@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/beards-of-zeus/hrr7-Apollo.png?label=ready&title=Ready)](https://waffle.io/beards-of-zeus/hrr7-Apollo)
 # Homerow Apollo
 
 ![Homerow Apollo](./client/assets/home.png "Homerow Apollo")
