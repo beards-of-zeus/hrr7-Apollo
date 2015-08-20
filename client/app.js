@@ -4,9 +4,15 @@ angular.module('app', ['ui.router', 'app.game', 'app.leaderboard', 'app.setIniti
 
   $urlRouterProvider.otherwise('/');
 
+  var landingPage = {
+    name: 'landingPage',
+    url: '/',
+    templateUrl: './landingPage/landingPage.html'
+  };
+
   var game = {
     name: 'game',
-    url: '/',
+    url: '/game',
     templateUrl: './game/game.html'
   };
 
@@ -23,9 +29,10 @@ angular.module('app', ['ui.router', 'app.game', 'app.leaderboard', 'app.setIniti
   };
 
   $stateProvider
+    .state(landingPage)
     .state(game)
     .state(leaderboard)
-    .state(setInitials)
+    .state(setInitials);
 
 }])
 
