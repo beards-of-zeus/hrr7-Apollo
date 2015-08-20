@@ -40,6 +40,9 @@
     "requirejs": "^2.1.20"
   },
   "dependencies": {
-    "express-jwt": "^3.0.1"
+    "express-jwt": "^3.0.1",
+    "pg": "^4.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.6.0"
   }
 }
