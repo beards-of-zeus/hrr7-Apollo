@@ -2,8 +2,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Homerow Apollo</title>
+
+  <!-- 8-bit style font -->
+  <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Press+Start+2P' />
+
+  <!-- Code Mirror Styling -->
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.5.0/codemirror.min.css">
+
+  <!-- Local styling -->
   <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <header class="main-header">
@@ -12,12 +19,11 @@
 
   <div ui-view class="container"></div>
 
-  <link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">
-  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.5.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.5.0/mode/javascript/javascript.min.js"></script>
   <script type="text/javascript" src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
-  <script type="text/javascript" src="bower_components/codemirror/mode/javascript/javascript.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript" src="game/game.js"></script>
   <script type="text/javascript" src="leaderboard/leaderboard.js"></script>
