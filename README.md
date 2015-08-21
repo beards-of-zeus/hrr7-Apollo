@@ -59,3 +59,24 @@ Seeding the Database with Challenges and Game records:
 - Find source for challenge content
 - Option to play Game with other programming languages
 - D3 visualization of Leaderboard
+
+##To set up Authorization (just for reference for now)
+1.) Sign up for auth0 and use Angular and Node
+2.) Follow set-up directions in both Angular and Node tabs
+    -Be sure to include [] in landing page module.app
+3.) From auth0 dashboard:
+
+a.) go to App/API --> settings and enter http://localhost:8080, https://hfoster.auth0.com/login/callback into allowed callback URIs
+b.) go to connections/social
+    -turn on google and click on it
+c.) go to https://console.developers.google.com/
+    -In top menu, click on dropdown, and select 'create' (create project maybe?)
+    -Enter a name for the project and then create
+    -Go to APIs&Auth--> APIs --> API library --> Social APIs --> Google+ API --> enable --> back -->Enabled APIs --> Google+
+    -Go to credentials --> add credentials -->OAuth 2.0 client ID
+    -Select web application
+    -Authorized JavaScript Origins: https://hfoster.auth0.com
+    -Authorized Redirect URI https://hfoster.auth0.com/login/callback
+    -Create
+d.) Copy/paste clientid and client secret into auth0 menu from b.)
+e.) save
