@@ -1,4 +1,4 @@
-describe('angularjs homepage', function() {
+xdescribe('angularjs homepage', function() {
 
   describe('Protractor Apollo Home Row', function() {
     it('should have a title', function() {

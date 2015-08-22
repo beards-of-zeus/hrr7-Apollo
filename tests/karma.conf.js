@@ -15,8 +15,23 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '../client/**/*.js',
-      '../tests/**/*.js'
+      //3rd Party
+      '../client/bower_components/angular/angular.js',
+      '../client/bower_components/angular-ui-router/release/angular-ui-router.js',
+      '../client/bower_components/angular-ui-codemirror/ui-codemirror.js',
+      '../client/bower_components/angular-mocks/angular-mocks.js',
+
+      //App
+      '../client/app.js',
+      '../client/landingpage/*.js',
+      '../client/game/*.js',
+      '../client/leaderboard/*.js',
+      //'../client/user/*.js',
+
+      //Tests
+      '../tests/unit/*.js',
+      '../tests/midway/*.js',
+      '../tests/e2e/*.js'
     ],  
 
 
@@ -61,6 +76,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };
