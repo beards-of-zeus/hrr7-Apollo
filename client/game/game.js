@@ -1,5 +1,5 @@
 angular.module('app.game', [])
-  .controller('gameController', function($location, store, auth, $scope, $timeout, $interval, $http, scoreFactory, sessionFactory, levelFactory){
+  .controller('gameController', function($location, store, auth, $scope, $timeout, $interval, $http, scoreFactory, sessionFactory, levelFactory, $analytics){
 
     $scope.logout = function() {
       auth.signout();
@@ -84,6 +84,10 @@ angular.module('app.game', [])
           // track that there is an error in the solution and where it is in the code
           $scope.incorrectBool = true;
           $scope.incorrectIndex = playerSolution.length-1;
+
+          //Submit missed character to analytics
+          $analytics.eventTrack('Missed', { category: 'Characters', label: $scope.challenge[$scope.incorrectIndex]});
+
           // show 'incorrect' message
           $scope.submitMessage = 'You typed an incorrect letter!';
           $scope.showMessage = true;
@@ -100,6 +104,10 @@ angular.module('app.game', [])
       // shows 'correct' message
       $scope.submitMessage = 'You are amazing!';
       $scope.showMessage = true;
+      
+      // Log passed level
+      $analytics.eventTrack('Passed', { category: 'Level', label: $scope.level});
+
       // increase user's level
       $scope.level++;
       // get user's score for this level and add it to total score
