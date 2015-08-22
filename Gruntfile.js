@@ -48,6 +48,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('style', ['sass', 'watch']);
-  grunt.registerTask('tests', ['karma']);
+  grunt.registerTask('test', ['karma']);
 
 };

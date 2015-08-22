@@ -63,7 +63,6 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
     .state(game)
     .state(leaderboard)
     .state(setInitials);
-
 }])
 
 //Keep the user logged in after a page refresh
