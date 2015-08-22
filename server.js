@@ -9,6 +9,7 @@ var morgan = require('morgan');                   // log requests to the console
 var bodyParser = require('body-parser');          // pull information from HTML POST (express4)
 var methodOverride = require('method-override');  // simulate DELETE and PUT (express4)
 var security = require('./server/security/sessionAuthorization.js');
+var jwt = require('express-jwt');
 
 
 ///////////
@@ -35,6 +36,14 @@ app.use(methodOverride());
 
 
 ///////////
+// Auth0; when used in app.get/post requests, prevents access unless user is signed in
+///////////
+var jwtCheck = jwt({
+  secret: new Buffer('5wUfyoKgLEBjcIapm6WwbaW6DLjWHtZv74OIKG2EXeN2LhDTiEFCQuOzzu_Tmhk6', 'base64'),
+  audience: 'lVodlxrgISRTmAjMAWTjp3ov7Kfb3d32'
+});
+
+///////////
 // MODELS
 ///////////
 var Game = require('./server/games/gameModel.js');
@@ -47,7 +56,7 @@ var Session = require('./server/security/sessionModel.js');
 ///////////
 // MINIMUM OF THE CURRENT 'HIGH SCORES'
 // Used in client to determine if the player's current score qualifies as a 'highscore'
-app.get('/api/minHighscore', function (req, res){
+app.get('/api/minHighscore', jwtCheck, function (req, res){
   Game.find({}).sort('-highscore').exec(function (err, games) {
     if (err) {
       console.log('ERROR',err);
@@ -63,7 +72,7 @@ app.get('/api/minHighscore', function (req, res){
 
 // GAMES
 // Create a new instance of Game with user's initials, highscore, and current date
-app.post('/api/games', security.checkSession, function (req, res){
+app.post('/api/games', jwtCheck, security.checkSession, function (req, res){
   // find entry in Session collection with session id to get the user's total score
   Session.findOne({_id: req.body.session}).exec(function(err, session){
     // save it to the Games collection for the leaderboard
@@ -96,7 +105,7 @@ app.get('/api/leaderboard', function (req, res){
 
 // CHALLENGE BATCH
 // Retrieves batch of Challenges rather than making requests for individual challenges
-app.get('/api/challengeBatch/:id', function (req, res){
+app.get('/api/challengeBatch/:id', jwtCheck, function (req, res){
   ChallengeBatch.find({id: req.params.id}).exec(function (err, batch){
     if (err) {
       console.log('ERROR:', err);
@@ -109,7 +118,7 @@ app.get('/api/challengeBatch/:id', function (req, res){
 });
 
 // SESSIONS
-app.post('/api/sessions', function (req, res){
+app.post('/api/sessions', jwtCheck, function (req, res){
   // if there is no session id and no score sent with the request, insert a new session entry
   if (!req.body.session && !req.body.score){
     var session = new Session();

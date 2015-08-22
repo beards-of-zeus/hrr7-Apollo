@@ -1,13 +1,48 @@
-angular.module('app', ['ui.router', 'app.game', 'app.leaderboard', 'app.setInitials', 'ui.codemirror'])
+angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app.game', 'app.leaderboard', 'app.setInitials', 'ui.codemirror','app.landingPage'])
+
+//connect to Auth0 account
+.config(function (authProvider) {
+  authProvider.init({
+    domain: 'hfoster.auth0.com',
+    clientID: 'lVodlxrgISRTmAjMAWTjp3ov7Kfb3d32',
+    loginState: 'landingPage'
+  });
+})
+
+.run(function(auth) {
+  // This hooks all auth events to check everything as soon as the app starts
+  auth.hookEvents();
+})
+
+//Configure secure calls to the API by returning on each request 
+//the JWT token received on the login.
+//Adds jwtInterceptor to the list of $http interceptor
+.config(function (authProvider, $httpProvider, jwtInterceptorProvider) {
+
+  jwtInterceptorProvider.tokenGetter = ['store', function(store) {
+    // Return the saved token
+    return store.get('token');
+  }];
+
+  $httpProvider.interceptors.push('jwtInterceptor');
+  // ...
+})
 
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
   $urlRouterProvider.otherwise('/');
 
+  var landingPage = {
+    name: 'landingPage',
+    url: '/',
+    templateUrl: './landingPage/landingPage.html'
+  };
+
   var game = {
     name: 'game',
-    url: '/',
-    templateUrl: './game/game.html'
+    url: '/game',
+    templateUrl: './game/game.html',
+    data: { requiresLogin: true }
   };
 
   var leaderboard = {
@@ -19,18 +54,38 @@ angular.module('app', ['ui.router', 'app.game', 'app.leaderboard', 'app.setIniti
   var setInitials = {
     name: 'setInitials',
     url: '/setInitials',
-    templateUrl: './leaderboard/setInitials.html'
+    templateUrl: './leaderboard/setInitials.html',
+    data: { requiresLogin: true }
   };
 
   $stateProvider
+    .state(landingPage)
     .state(game)
     .state(leaderboard)
-    .state(setInitials)
+    .state(setInitials);
 
 }])
 
-.run(['$state', function($state){
-  $state.transitionTo('game');
-}]);
+//Keep the user logged in after a page refresh
+.run(function($rootScope, auth, store, jwtHelper, $location) {
+  // This events gets triggered on refresh or URL change
+  $rootScope.$on('$locationChangeStart', function() {
+    var token = store.get('token');
+    if (token) {
+      if (!jwtHelper.isTokenExpired(token)) {
+        if (!auth.isAuthenticated) {
+          auth.authenticate(store.get('profile'), token);
+        }
+      } else {
+        // Either show the login page or use the refresh token to get a new idToken
+        $location.path('/');
+      }
+    }
+  });
+});
+//Didn't seem necessary
+// .run(['$state', function($state){
+//   $state.transitionTo('game');
+// }]);
 
 
