@@ -33,7 +33,7 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-requirejs": "^0.2.2",
     "mocha": "^2.2.5",
-    "protractor-screenshot-reporter": "0.0.5"
+    "protractor-screenshot-reporter": "0.0.5",
     "mongoose": "^4.1.1",
     "morgan": "~1.6.1",
     "ng-midway-tester": "^2.0.5",
