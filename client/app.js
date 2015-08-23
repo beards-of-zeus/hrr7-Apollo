@@ -5,7 +5,7 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
   authProvider.init({
     domain: 'hfoster.auth0.com',
     clientID: 'lVodlxrgISRTmAjMAWTjp3ov7Kfb3d32',
-    loginState: 'landingPage'
+    loginState: 'landingPage',
   });
 })
 
@@ -34,13 +34,13 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
 
   var landingPage = {
     name: 'landingPage',
-    url: '/',
+    url: '/landingPage',
     templateUrl: './landingPage/landingPage.html'
   };
 
   var game = {
     name: 'game',
-    url: '/game',
+    url: '/',
     templateUrl: './game/game.html',
     data: { requiresLogin: true }
   };
