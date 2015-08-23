@@ -1,13 +1,11 @@
 angular.module('app.game', [])
   .controller('gameController', function($location, store, auth, $scope, $timeout, $interval, $http, scoreFactory, sessionFactory, levelFactory, $analytics){
-
     $scope.logout = function() {
       auth.signout();
       store.remove('profile');
       store.remove('token');
-      $location.path('/');
+      $location.path('/landingPage');
     };
-
     //////////
     // SET UP
     //////////
