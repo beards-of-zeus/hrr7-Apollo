@@ -15,15 +15,24 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      //3rd Party
+      '../client/bower_components/angular/angular.js',
+      '../client/bower_components/angular-ui-router/release/angular-ui-router.js',
+      '../client/bower_components/angular-ui-codemirror/ui-codemirror.js',
+      '../client/bower_components/angular-mocks/angular-mocks.js',
 
-      'client/bower_components/angular/angular.js',
-      'client/bower_components/angular-mocks/angular-mocks.js',
-      'client/bower_components/angular-ui-router/release/angular-ui-router.js',
-      'tests/**/*.js',
-      'client/game/**/*.js',
-      'client/leaderboard/**/*.js',
-      'client/app.js'
-    ],
+      //App
+      '../client/app.js',
+      '../client/landingpage/*.js',
+      '../client/game/*.js',
+      '../client/leaderboard/*.js',
+      //'../client/user/*.js',
+
+      //Tests
+      '../tests/unit/*.js',
+      '../tests/midway/*.js',
+      '../tests/e2e/*.js'
+    ],  
 
 
     // list of files to exclude
@@ -40,7 +49,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['dots'],
 
 
     // web server port
@@ -62,11 +71,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
-  })
-}
+    singleRun: true
+  });
+};

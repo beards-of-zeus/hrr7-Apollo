@@ -1,21 +1,19 @@
-describe('Unit: gameController', function() {
+xdescribe('GameController', function() {
   // Load the module with gameController
   beforeEach(module('app'));
+
 
   var ctrl, scope;
   // inject the $controller and $rootScope services
   // in the beforeEach block
-  beforeEach(inject(function($controller, $rootScope) {
+  beforeEach(inject(function(_$controller_) {
     // Create a new scope that's a child of the $rootScope
-    scope = $rootScope.$new();
-    // Create the controller
-    ctrl = $controller('gameController', {
-      $scope: scope
-    });
+    ctrl = _$controller_;
   }));
 
   it('should have totalScore set to 0',
     function() {
+
       scope.totalScore.totalScore.should.equal(0);
   });
 
@@ -28,4 +26,4 @@ describe('Unit: gameController', function() {
     function() {
       scope.gameOver.should.equal(false);
   });
-})
+});

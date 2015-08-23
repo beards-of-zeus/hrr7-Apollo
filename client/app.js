@@ -1,4 +1,4 @@
-angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app.game', 'app.leaderboard', 'app.setInitials', 'ui.codemirror','app.landingPage'])
+angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app.game', 'app.leaderboard', 'app.setInitials', 'ui.codemirror','app.landingPage', 'angulartics','angulartics.google.analytics'])
 
 //connect to Auth0 account
 .config(function (authProvider) {
@@ -63,7 +63,6 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
     .state(game)
     .state(leaderboard)
     .state(setInitials);
-
 }])
 
 //Keep the user logged in after a page refresh
