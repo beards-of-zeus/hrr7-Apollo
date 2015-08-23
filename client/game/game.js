@@ -6,6 +6,58 @@ angular.module('app.game', [])
       store.remove('token');
       $location.path('/landingPage');
     };
+
+    //////////
+    // Profile
+    //////////
+
+    //Create default profile data for new users
+    var newProfile = {
+      username: auth.profile.given_name,
+      highScores: [],
+      challengingChars: null,
+      highestLevel: 0,
+      user_Id: auth.profile.user_id.split('|')[1]
+    };
+
+    $scope.createProfile = function(){
+      //Build profile object
+      //Send request to create new column in User database
+      $http.post('/api/createUser', newProfile)
+        .then(function(res){}, function(err){
+          console.err('Error!', err);
+        });
+    };
+
+    $scope.getProfile = function(){
+    //Get user profile and set it to a local value
+      $http.post('/api/getProfile', { id: auth.profile.user_id.split('|')[1] })
+        .then(function(res){
+          if(res.data.length){
+            $scope.userStats = res.data;
+          } else {
+            $scope.createProfile();
+            $scope.userStats = newProfile;
+          }
+        });
+    };
+    
+    //Retrieve profile so that it can be updated
+    $scope.getProfile();
+
+    $scope.updateProfile = function(){
+      //Update stats from this game
+      $scope.userStats.highScores.push($scope.totalScore.totalScore);
+      $scope.userStats.challengingChars = $scope.missedChars;
+      $scope.userStats.highestLevel = Math.max($scope.userStats.highestLevel, $scope.level);
+          
+      //Send request to update User database
+      $http.post('/api/updateUser', $scope.userStats)
+        .then(function(res){}, function(err){
+          console.err('Error!', err);
+        });
+    };
+
     //////////
     // SET UP
     //////////
@@ -55,6 +107,8 @@ angular.module('app.game', [])
           $timeout(function(){
             scoreFactory.checkScore($scope.totalScore);
           }, 2500);
+          //send user's stats to db to be updated
+          $scope.updateProfile(); 
         }
       }, 1000);
     };
@@ -65,6 +119,8 @@ angular.module('app.game', [])
     //////////////////////////
     // PLAYER SOLUTION CHECKS
     //////////////////////////
+    $scope.missedChars = {};
+
     $scope.checkChar = function(playerSolution){
       if(playerSolution.length > 0){
         if(playerSolution === $scope.challenge){
@@ -85,7 +141,15 @@ angular.module('app.game', [])
 
           //Submit missed character to analytics
           $analytics.eventTrack('Missed', { category: 'Characters', label: $scope.challenge[$scope.incorrectIndex]});
-
+          
+          //Check if incorrect value is already being tracked
+          if ( $scope.missedChars[$scope.challenge[$scope.incorrectIndex]] !== undefined){
+            //If so, increment it
+            $scope.missedChars[$scope.challenge[$scope.incorrectIndex]]++;
+          } else {
+            //otherwise declare it
+            $scope.missedChars[$scope.challenge[$scope.incorrectIndex]] = 0;
+          }
           // show 'incorrect' message
           $scope.submitMessage = 'You typed an incorrect letter!';
           $scope.showMessage = true;
@@ -153,6 +217,8 @@ angular.module('app.game', [])
             $timeout(function(){
               scoreFactory.checkScore($scope.totalScore);
             }, 2500);
+            // send user's stats to db to update them
+            $scope.updateProfile();
           }
         });
       }
