@@ -86,10 +86,13 @@ angular.module('app.performance', [])
 
         $http.post('/api/getProfile', {id: auth.profile.user_id.split('|')[1]})
           .then(function(res){
-            console.log('here we are ' + res.data[compField] );
             var dataPoints = res.data.highScores || [];
-            dataPoints.sort();
-            var highScore = dataPoints[dataPoints.length -1],
+            var highScore = dataPoints[0] || 0;
+            for(var i = 1; i < dataPoints.length; i++){
+              if(dataPoints[i] > highScore){
+                highScore = dataPoints[i];
+              }
+            }
             csv = seedData[res.data[compField]];
 
             csv.forEach(function(x) {
