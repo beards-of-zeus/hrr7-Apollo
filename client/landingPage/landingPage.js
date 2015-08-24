@@ -19,3 +19,4 @@ angular.module('app.landingPage',[])
     });
   };
 });
+
