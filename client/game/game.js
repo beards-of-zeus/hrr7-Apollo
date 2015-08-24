@@ -1,12 +1,5 @@
-angular.module('app.game', ['ui.router'])
-  .controller('gameController', function($state, store, auth, $scope, $timeout, $interval, $http, scoreFactory, sessionFactory, levelFactory, $analytics){
-    $scope.logout = function() {
-      auth.signout();
-      store.remove('profile');
-      store.remove('token');
-      $state.go('landingPage');
-    };
-
+angular.module('app.game', [])
+  .controller('gameController', function($state, auth, $scope, $timeout, $interval, $http, scoreFactory, sessionFactory, levelFactory, $analytics){
     //////////
     // Profile
     //////////

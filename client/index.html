@@ -24,9 +24,10 @@
   ga('create', 'UA-66587916-2', 'auto');
   </script>
 </head>
-<body>
+<body ng-controller="mainController as main">
   <header class="main-header">
-    Homerow Apollo
+    <div class="left">Homerow Apollo</div>
+    <div class="right"><input type="submit" ng-click="main.logout()" value="Log out" /></div>
   </header>
 
   <a href="http://hackreactor.com"> \

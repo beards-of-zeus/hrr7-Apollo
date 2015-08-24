@@ -7,11 +7,14 @@ html {
   font-family: 'Press Start 2P', cursive; }
 
 .main-header {
+  background-color: rgba(40, 44, 44, 0.6);
   color: #F5FFFF;
   padding: 10px;
   border-bottom: 10px solid #141466;
   border-style: ridge;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  margin: 5px 2%;
+  width: 94%; }
 
 .box {
   border-color: red;
@@ -26,6 +29,16 @@ button {
   margin: 10px;
   border: 5px solid #141466;
   border-style: ridge; }
+
+.left {
+  display: inline-block;
+  margin-top: 2px; }
+
+.right {
+  float: right;
+  margin-top: -5px;
+  margin-right: 1%;
+  width: 65px; }
 
 form {
   margin: 0 auto;

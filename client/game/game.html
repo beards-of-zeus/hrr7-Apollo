@@ -23,13 +23,12 @@
       <!-- Stretch idea: cols and rows could be added dynamically based on gameContent -->
       <textarea ui-codemirror ui-codemirror-opts="editorOptions" ng-class="{box: incorrectBool}" id="gameInput" ng-model="playerSolution" name="gameInput" cols="60" rows="10" ng-disabled="gameOver" ng-change="checkChar(playerSolution)"></textarea>
 
-      <br>
+      <br />
       <span ng-if="showMessage">{{ submitMessage }}</span>
     </form>
-    <input type="submit" ng-click="logout()" value="Log out" />
     <!-- Function needs to be rewritten so it doesn't overwrite scores -->
     <!-- <input type="submit" ng-click="profile()" value="Update User Profile" /> -->
     <input type="submit" ng-click="performance()" value="View Performance" />
-    
+    <input type="submit" ng-click="profile()" value="User Profile" />
   </div>
 </div>

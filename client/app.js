@@ -1,8 +1,13 @@
 var app = window.app = angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app.game', 'app.leaderboard', 'app.setInitials', 'ui.codemirror','app.landingPage', 'angulartics','angulartics.google.analytics', 'app.user', 'app.performance'])
 
-//remove # from address bar on view changes
-.config(function($locationProvider){
-  $locationProvider.html5Mode(true);
+//Main controller for nav bar and header page
+.controller('mainController', function($state, store, auth) {
+  this.logout = function() {
+      auth.signout();
+      store.remove('profile');
+      store.remove('token');
+      $state.go('landingPage');
+    };
 })
 //connect to Auth0 account
 .config(function (authProvider) {
@@ -32,7 +37,9 @@ var app = window.app = angular.module('app', ['auth0','angular-storage','angular
   // ...
 })
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
+//remove # from address bar on view changes
+  $locationProvider.html5Mode(true);
 
   $urlRouterProvider.otherwise('/');
 

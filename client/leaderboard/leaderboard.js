@@ -1,6 +1,6 @@
 angular.module('app.leaderboard', [])
 
-.controller('leaderboardController', function(store, auth, $scope, $state, $http, scoreFactory, sessionFactory, levelFactory){
+.controller('leaderboardController', function($scope, $state, $http, scoreFactory, sessionFactory, levelFactory, $analytics){
 
   // get scores for leaderboard
   $http.get('/api/leaderboard')
@@ -9,6 +9,8 @@ angular.module('app.leaderboard', [])
   });
   
   $scope.startGame = function(){
+    //Track analytics
+    $analytics.eventTrack('Restarted', { category: 'Game'});
     // resets the player's score and level in the game view
     scoreFactory.totalScore = 0;
     levelFactory.totalLevel = -1;
@@ -17,13 +19,6 @@ angular.module('app.leaderboard', [])
     // redirects back to the game view
     $state.transitionTo('game');
   };
-
-  $scope.logout = function() {
-      auth.signout();
-      store.remove('profile');
-      store.remove('token');
-      $state.go('landingPage');
-    };
 
   $scope.performance = function(){
       $state.go('performance');
