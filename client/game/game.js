@@ -101,6 +101,7 @@ angular.module('app.game', ['ui.router'])
           $timeout(function(){
             scoreFactory.checkScore($scope.totalScore);
           }, 2500);
+          $scope.updateProfile(); 
         }
       }, 1000);
     };
@@ -111,6 +112,8 @@ angular.module('app.game', ['ui.router'])
     //////////////////////////
     // PLAYER SOLUTION CHECKS
     //////////////////////////
+    $scope.missedChars = {};
+
     $scope.checkChar = function(playerSolution){
       if(playerSolution.length > 0){
         if(playerSolution === $scope.challenge){
@@ -131,7 +134,15 @@ angular.module('app.game', ['ui.router'])
 
           //Submit missed character to analytics
           $analytics.eventTrack('Missed', { category: 'Characters', label: $scope.challenge[$scope.incorrectIndex]});
-
+          
+          //Check if incorrect value is already being tracked
+          if ( $scope.missedChars[$scope.challenge[$scope.incorrectIndex]] !== undefined){
+            //If so, increment it
+            $scope.missedChars[$scope.challenge[$scope.incorrectIndex]]++;
+          } else {
+            //otherwise declare it
+            $scope.missedChars[$scope.challenge[$scope.incorrectIndex]] = 0;
+          }
           // show 'incorrect' message
           $scope.submitMessage = 'You typed an incorrect letter!';
           $scope.showMessage = true;
@@ -199,6 +210,7 @@ angular.module('app.game', ['ui.router'])
             $timeout(function(){
               scoreFactory.checkScore($scope.totalScore);
             }, 2500);
+            $scope.updateProfile(); 
           }
         });
       }
