@@ -1,4 +1,4 @@
-angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app.game', 'app.leaderboard', 'app.setInitials', 'ui.codemirror','app.landingPage', 'angulartics','angulartics.google.analytics', 'app.user'])
+angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app.game', 'app.leaderboard', 'app.setInitials', 'ui.codemirror','app.landingPage', 'angulartics','angulartics.google.analytics', 'app.user', 'app.performance'])
 
 //remove # from address bar on view changes
 .config(function($locationProvider){
@@ -61,6 +61,11 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
     templateUrl: './profile/user.html'
   };
 
+  var performance = {
+    name: 'performance',
+    url: '/performance',
+    templateUrl: './profile/performance.html'
+  };
   var setInitials = {
     name: 'setInitials',
     url: '/setInitials',
@@ -73,6 +78,7 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
     .state(game)
     .state(leaderboard)
     .state(user)
+    .state(performance)
     .state(setInitials);
 }])
 

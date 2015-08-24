@@ -20,15 +20,17 @@ angular.module('app.game', ['ui.router'])
       user_Id: auth.profile.user_id.split('|')[1]
     };
 
+<<<<<<< HEAD
   
+=======
+>>>>>>> Rehash with DB.
     $scope.getProfile = function(){
     //Get user profile and set it to a local value
       $http.post('/api/getProfile', { id: auth.profile.user_id.split('|')[1] })
         .then(function(res){
-          if(res.data.length){
+          if(!!res.data){
             $scope.userStats = res.data;
           } else {
-            $scope.createProfile();
             $scope.userStats = newProfile;
           }
         });

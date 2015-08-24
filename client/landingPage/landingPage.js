@@ -6,7 +6,18 @@ angular.module('app.landingPage',[])
       // Success callback
       store.set('profile', profile);
       store.set('token', token);
+<<<<<<< HEAD
       $state.go('game');
+=======
+      $http.post('/api/getProfile', {id: auth.profile.user_id.split('|')[1]})
+        .then(function(res){
+          if(!!res.data){
+            $location.path('/performance');
+          } else {
+            $location.path('/user');
+          }
+        });
+>>>>>>> Rehash with DB.
     }, function () {
       // Error callback
     });
