@@ -25,31 +25,31 @@ db.batches.insert({
     }, {
       "level": 3,
       "content": "null === undefined;",
-      "timeLimit": 10
+      "timeLimit": 90
     }, {
       "level": 4,
       "content": "13 + !0;",
-      "timeLimit": 10
+      "timeLimit": 90
     }, {
       "level": 5,
       "content": "'This is a string'.charAt(0);",
-      "timeLimit": 10
+      "timeLimit": 90
     }, {
       "level": 6,
       "content": "'Hello world'.substring(0, 5);",
-      "timeLimit": 10
+      "timeLimit": 90
     }, {
       "level": 7,
       "content": "'Hello'.length;",
-      "timeLimit": 10
+      "timeLimit": 90
     }, {
       "level": 8,
       "content": "var someVar = 5;",
-      "timeLimit": 10
+      "timeLimit": 90
     }, {
       "level": 9,
       "content": "someOtherVar = 10;",
-      "timeLimit": 10
+      "timeLimit": 90
     }
   ]
 });
