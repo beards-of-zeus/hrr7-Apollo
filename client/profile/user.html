@@ -1,0 +1,41 @@
+<div ng-controller="userController">
+    <div>
+      <div id='gender'>
+      <label>
+        <p>what is your gender?</p>
+        <input type="radio" ng-model="user.gender" value="female">
+        Female
+      </label><br/>
+      <label>
+        <input type="radio" ng-model="user.gender" value="male">
+        Male
+      </label><br/>
+      </div>
+      <div id='age'>
+      <p>how old are you?</p>
+      <label>
+        <input type='radio' ng-model='user.age' value='0-14'>0-14
+      </label>
+      <label>
+        <input type='radio' ng-model='user.age' value='15-24'>15-24
+      </label>
+      <label>
+        <input type='radio' ng-model='user.age' value='25-34'>25-34
+      </label>
+      <label>
+        <input type='radio' ng-model='user.age' value='35-44'>35-44
+      </label>
+      <label>
+        <input type='radio' ng-model='user.age' value='45-54'>45-54
+      </label>
+      <label>
+        <input type='radio' ng-model='user.age' value='55+'>55+
+      </label>
+      </div>
+    </div>
+    <div id='line'></div>
+    <div id='box'></div>
+  <div>
+   <input type="submit" ng-click="createProfile()" value="Create Your Profile" />
+  </div>
+</div>

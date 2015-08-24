@@ -5,22 +5,21 @@ var Sequelize = require('sequelize');
 //Create User model
 var User = db.define('User', {
   username: Sequelize.STRING,
-  highScore: Sequelize.INTEGER,
-  challengingChars: Sequelize.ARRAY(Sequelize.TEXT),
-  avgSpeed: Sequelize.INTEGER,
-  highestLevel: Sequelize.INTEGER
+  highScores: Sequelize.ARRAY(Sequelize.INTEGER),
+  challengingChars: Sequelize.JSON,
+  highestLevel: Sequelize.INTEGER,
+  age: Sequelize.STRING,
+  gender: Sequelize.STRING,
+  user_Id: {type: Sequelize.STRING,
+      unique: true, 
+      notEmpty: true, 
+      notNull: true,
+      primaryKey: true
+    }
 });
 
 //Sync model
-db.sync().then(function(){
-  return User.create({
-    username: 'Apollo',
-    highScore: 10000,
-    challengingChars: ["none"],
-    avgSpeed: 120,
-    highestLevel: 1000
-  });
-});
+db.sync();
 
 //Export model
 module.exports = User;
