@@ -164,8 +164,6 @@ app.post('/api/sessions', jwtCheck, function (req, res){
   }
 });
 
-<<<<<<< HEAD
-=======
 ///////////
 // PROFILE
 ///////////
@@ -212,7 +210,6 @@ app.post('/api/getProfile', function(req, res){
 });
 ///////////
 
->>>>>>> Rehash with DB.
 
 ///////////
 // LISTEN
