@@ -77,4 +77,43 @@ form {
     user-select: none;
 }
 
+
+/*D3 default styling*/
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+d3box {
+  font: 10px sans-serif;
+}
+
+.d3box line,
+.d3box rect,
+.d3box circle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.d3box .center {
+  stroke-dasharray: 3,3;
+}
+
+.d3box .outlier {
+  fill: none;
+  stroke: #ccc;
+}
 /*# sourceMappingURL=style.css.map */

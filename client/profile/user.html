@@ -14,6 +14,9 @@
       <div id='age'>
       <p>how old are you?</p>
       <label>
+        <input type='radio' ng-model='user.age' value='0-14'>0-14
+      </label>
+      <label>
         <input type='radio' ng-model='user.age' value='15-24'>15-24
       </label>
       <label>
@@ -30,8 +33,11 @@
       </label>
       </div>
     </div>
-
+    <div id='line'></div>
+    <div id='box'></div>
   <div>
    <input type="submit" ng-click="backToGame()" value="Back to Game" />
+   <input type="submit" ng-click="drawLine()" value="Line" />
+   <input type="submit" ng-click="drawBox()" value="Box" />
   </div>
 </div>
