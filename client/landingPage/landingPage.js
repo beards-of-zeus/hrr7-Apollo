@@ -1,13 +1,14 @@
-angular.module('app.landingPage',[]).controller('landingPageController', ['$scope', '$http', 'auth', 'store', '$location',
-function ($scope, $http, auth, store, $location) {
+angular.module('app.landingPage',[])
+
+.controller('landingPageController', function ($scope, $http, auth, store, $state) {
   $scope.login = function () {
     auth.signin({}, function (profile, token) {
       // Success callback
       store.set('profile', profile);
       store.set('token', token);
-      $location.path('/game');
+      $state.go('game');
     }, function () {
       // Error callback
     });
   };
-}]);
+});

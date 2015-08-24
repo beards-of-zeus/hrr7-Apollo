@@ -70,7 +70,7 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
 }])
 
 //Keep the user logged in after a page refresh
-.run(function($rootScope, auth, store, jwtHelper, $location) {
+.run(function($rootScope, auth, store, jwtHelper, $state) {
   // This events gets triggered on refresh or URL change
   $rootScope.$on('$locationChangeStart', function() {
     var token = store.get('token');
@@ -81,7 +81,7 @@ angular.module('app', ['auth0','angular-storage','angular-jwt','ui.router', 'app
         }
       } else {
         // Either show the login page or use the refresh token to get a new idToken
-        $location.path('/');
+        $state.go('game');
       }
     }
   });
