@@ -1,6 +1,6 @@
 angular.module('app.leaderboard', [])
 
-.controller('leaderboardController', function($location, store, auth, $scope, $state, $http, scoreFactory, sessionFactory, levelFactory){
+.controller('leaderboardController', function(store, auth, $scope, $state, $http, scoreFactory, sessionFactory, levelFactory){
 
   // get scores for leaderboard
   $http.get('/api/leaderboard')
@@ -22,6 +22,6 @@ angular.module('app.leaderboard', [])
       auth.signout();
       store.remove('profile');
       store.remove('token');
-      $location.path('/');
+      $state.go('landingPage');
     };
 });
