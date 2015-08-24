@@ -3,7 +3,7 @@ angular.module('app.performance', [])
     $scope.beginGame = function(){
       $state.go('game');
     };
-    $scope.drawLine = function(){
+    $scope.scoreHistory = function(){
       var margin = {top: 20, right: 20, bottom: 30, left: 50},
       width = 960 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
@@ -34,7 +34,6 @@ angular.module('app.performance', [])
 
       $http.post('/api/getProfile', {id: auth.profile.user_id.split('|')[1]})
         .then(function(res){
-          console.log(res);
           if(!!res.data){
             var dataPoints = res.data.highScores, data = [];
             dataPoints.forEach(function(value, index){
@@ -61,7 +60,7 @@ angular.module('app.performance', [])
         });
     };
 
-    $scope.drawBox = function(){
+    $scope.compare = function(compField){
         var margin = {top: 10, right: 85, bottom: 20, left: 85},
             width = 220 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
@@ -73,8 +72,8 @@ angular.module('app.performance', [])
             .width(width)
             .height(height);
 
-          var data = []; 
-          var seedData = {
+          var data = [], 
+          seedData = {
             'male': [963, 654, 263, 672, 617, 171, 126, 482, 19, 333, 614, 860, 163, 405, 129, 683, 690, 596],
             'female': [894, 562, 977, 239, 961, 993, 529, 1051, 330, 576, 371, 232, 936, 495, 502, 47, 308, 678],
             '0-14': [382, 520, 654, 852, 1049, 457, 847, 51, 352, 685, 464, 419, 593, 86, 24, 591, 544, 722],
@@ -85,30 +84,35 @@ angular.module('app.performance', [])
             '55+': [514, 46, 685, 356, 808, 880, 1032, 913, 820, 741, 858, 653, 998, 754, 644, 153, 187, 1057]
           }
 
-          var csv = [850, 740, 900, 1070, 945, 850, 950, 980, 880, 1000, 890, 930, 
-          650, 760, 810, 1030, 960,];
+        $http.post('/api/getProfile', {id: auth.profile.user_id.split('|')[1]})
+          .then(function(res){
+            console.log('here we are ' + res.data[compField] );
+            var dataPoints = res.data.highScores || [];
+            dataPoints.sort();
+            var highScore = dataPoints[dataPoints.length -1],
+            csv = seedData[res.data[compField]];
 
-          csv.forEach(function(x) {
-            var e = 0,
-                s = Math.floor(x),
-                d = data[e];
-            if (!d) d = data[e] = [s];
-            else d.push(s);
-            if (s > max) max = s;
-            if (s < min) min = s;
+            csv.forEach(function(x) {
+              var e = 0,
+                  s = Math.floor(x),
+                  d = data[e];
+              if (!d) d = data[e] = [s];
+              else d.push(s);
+              if (s > max) max = s;
+              if (s < min) min = s;
+            });
+            chart.domain([min, max]);
+            data[0].push(highScore);
+            var svg = d3.select("#box").selectAll("svg")
+                .data(data)
+              .enter().append("svg")
+                .attr("class", "d3box")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.bottom + margin.top)
+              .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                .call(chart);
           });
-          chart.domain([min, max]);
-          data[0].push(915);
-          var svg = d3.select("#box").selectAll("svg")
-              .data(data)
-            .enter().append("svg")
-              .attr("class", "d3box")
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.bottom + margin.top)
-            .append("g")
-              .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-              .call(chart);
-
 
         // Returns a function to compute the interquartile range.
         function iqr(k) {
