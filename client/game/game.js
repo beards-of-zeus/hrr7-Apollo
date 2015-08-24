@@ -6,6 +6,54 @@ angular.module('app.game', ['ui.router'])
       store.remove('token');
       $state.go('landingPage');
     };
+
+    //////////
+    // Profile
+    //////////
+
+    //Create default profile data for new users
+    var newProfile = {
+      username: auth.profile.given_name,
+      highScores: [],
+      challengingChars: null,
+      highestLevel: 0,
+      user_Id: auth.profile.user_id.split('|')[1]
+    };
+
+  
+    $scope.getProfile = function(){
+    //Get user profile and set it to a local value
+      $http.post('/api/getProfile', { id: auth.profile.user_id.split('|')[1] })
+        .then(function(res){
+          if(res.data.length){
+            $scope.userStats = res.data;
+          } else {
+            $scope.createProfile();
+            $scope.userStats = newProfile;
+          }
+        });
+    };
+    
+    //Retrieve profile so that it can be updated
+    $scope.getProfile();
+
+    $scope.updateProfile = function(){
+      //Update stats from this game
+      $scope.userStats.highScores.push($scope.totalScore.totalScore);
+      $scope.userStats.challengingChars = $scope.missedChars;
+      $scope.userStats.highestLevel = Math.max($scope.userStats.highestLevel, $scope.level);
+          
+      //Send request to update User database
+      $http.post('/api/updateUser', $scope.userStats)
+        .then(function(res){}, function(err){
+          console.err('Error!', err);
+        });
+    };
+
+    $scope.profile = function() {
+      $location.path('/user');
+    };
+
     //////////
     // SET UP
     //////////
