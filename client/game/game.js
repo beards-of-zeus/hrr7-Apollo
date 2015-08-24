@@ -49,7 +49,7 @@ angular.module('app.game', ['ui.router'])
     };
 
     $scope.profile = function() {
-      $location.path('/user');
+      $state.go('user');
     };
 
     //////////
