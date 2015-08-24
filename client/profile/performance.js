@@ -26,7 +26,7 @@ angular.module('app.performance', [])
         .x(function(d) { return x(d.x); })
         .y(function(d) { return y(d.y); });
 
-      var svg = d3.select("#line").append("svg")
+      var svg = d3.select("#scores").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -93,7 +93,7 @@ angular.module('app.performance', [])
                 highScore = dataPoints[i];
               }
             }
-            csv = seedData[res.data[compField]];
+            var csv = seedData[res.data[compField]];
 
             csv.forEach(function(x) {
               var e = 0,
@@ -106,7 +106,8 @@ angular.module('app.performance', [])
             });
             chart.domain([min, max]);
             data[0].push(highScore);
-            var svg = d3.select("#box").selectAll("svg")
+            var idString = "#"+compField;
+            var svg = d3.select(idString).selectAll("svg")
                 .data(data)
               .enter().append("svg")
                 .attr("class", "d3box")
