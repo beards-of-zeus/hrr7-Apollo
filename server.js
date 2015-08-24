@@ -164,50 +164,6 @@ app.post('/api/sessions', jwtCheck, function (req, res){
   }
 });
 
-///////////
-// PROFILE
-///////////
-var postDB = require('./server/database/db.js');
-var User = require('./server/database/userModel.js');
-
-//Creates a new user in the database
-app.post('/api/createUser', function(req, res){
-  User.upsert({
-    username: req.body.username,
-    highScores: req.body.highScores,
-    challengingChars: req.body.challengingChars,
-    highestLevel: req.body.highestLevel,
-    user_Id: req.body.user_Id
-  }).then(function(user){
-    console.log('Success!!');
-  });
-});
-
-//Updates user row
-app.post('/api/updateUser', function(req, res){
-  User.upsert({
-      highScores: req.body.highScores,
-      challengingChars: JSON.stringify(req.body.challengingChars),
-      highestLevel: req.body.highestLevel,
-      user_Id: req.body.user_Id
-    })
-  .then(function(success){
-    res.send('Success');
-  });
-});
-
-//Retrieves user from database
-app.post('/api/getProfile', function(req, res){
-  User.find({
-    where: {
-      user_Id: req.body.id
-    }
-  }).then(function(profile){
-    res.send(profile);
-  });
-});
-///////////
-
 
 ///////////
 // LISTEN
