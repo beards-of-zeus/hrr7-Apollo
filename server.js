@@ -179,7 +179,7 @@ app.post('/api/createUser', function(req, res){
     highestLevel: req.body.highestLevel,
     user_Id: req.body.user_Id
   }).then(function(user){
-    console.log('Success!!');
+    res.sendStatus(200);
   });
 });
 
@@ -192,7 +192,7 @@ app.post('/api/updateUser', function(req, res){
       user_Id: req.body.user_Id
     })
   .then(function(success){
-    res.send('Success');
+    res.sendStatus(200);
   });
 });
 
