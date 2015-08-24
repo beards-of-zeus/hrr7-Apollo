@@ -99,6 +99,7 @@ angular.module('app.game', ['ui.router'])
         $scope.timeLimit--;
         // if the timer runs out before a successful submit, the player loses
         if ($scope.timeLimit === 0){
+          $analytics.eventTrack('Failed', { category: 'Level', label: $scope.level + ' failed.'});
           $scope.editorOptions = {readOnly: "nocursor"};
           $interval.cancel(stop);
           $scope.gameOver = true;
@@ -165,7 +166,7 @@ angular.module('app.game', ['ui.router'])
       $scope.showMessage = true;
       
       // Log passed level
-      $analytics.eventTrack('Passed', { category: 'Level', label: $scope.level});
+      $analytics.eventTrack('Passed', { category: 'Level', label: $scope.level + ' passed with ' + $scope.timeLimit + ' remaining.'});
 
       // increase user's level
       $scope.level++;
@@ -208,7 +209,8 @@ angular.module('app.game', ['ui.router'])
             startTimer();
           // if there are no more challenge batches
           } else {
-            // tell the user they won the game and check if the score is high enough for the leaderboard
+            // tell the user they won the game and check if the score is high enough for the leader board
+            $analytics.eventTrack('Won', {category: 'Game' });
             $scope.gameWon = true;
             $scope.editorOptions = {readOnly: "nocursor"};
             $timeout(function(){
