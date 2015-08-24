@@ -1,7 +1,7 @@
 angular.module('app.performance', [])
-  .controller('performanceController', function($location, $scope, $http, auth){
+  .controller('performanceController', function($location, $scope, $http, auth, $state){
     $scope.beginGame = function(){
-      $location.path('/game');
+      $state.go('game');
     };
     $scope.drawLine = function(){
       var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -73,8 +73,8 @@ angular.module('app.performance', [])
             .width(width)
             .height(height);
 
-          var data = [], 
-          var newThing = {
+          var data = []; 
+          var seedData = {
             'male': [963, 654, 263, 672, 617, 171, 126, 482, 19, 333, 614, 860, 163, 405, 129, 683, 690, 596],
             'female': [894, 562, 977, 239, 961, 993, 529, 1051, 330, 576, 371, 232, 936, 495, 502, 47, 308, 678],
             '0-14': [382, 520, 654, 852, 1049, 457, 847, 51, 352, 685, 464, 419, 593, 86, 24, 591, 544, 722],
@@ -84,7 +84,8 @@ angular.module('app.performance', [])
             '45-54': [841, 673, 41, 472, 111, 179, 461, 173, 151, 427, 428, 654, 664, 634, 383, 119, 326, 509],
             '55+': [514, 46, 685, 356, 808, 880, 1032, 913, 820, 741, 858, 653, 998, 754, 644, 153, 187, 1057]
           }
-          csv = [850, 740, 900, 1070, 945, 850, 950, 980, 880, 1000, 890, 930, 
+
+          var csv = [850, 740, 900, 1070, 945, 850, 950, 980, 880, 1000, 890, 930, 
           650, 760, 810, 1030, 960,];
 
           csv.forEach(function(x) {

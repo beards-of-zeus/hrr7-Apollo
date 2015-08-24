@@ -9,9 +9,9 @@ angular.module('app.landingPage',[])
       $http.post('/api/getProfile', {id: auth.profile.user_id.split('|')[1]})
         .then(function(res){
           if(!!res.data){
-            $state.go('/performance');
+            $state.go('performance');
           } else {
-            $state.go('/user');
+            $state.go('user');
           }
         });
     }, function () {

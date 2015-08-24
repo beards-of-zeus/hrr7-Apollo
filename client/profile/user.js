@@ -1,9 +1,9 @@
 angular.module('app.user', [])
-  .controller('userController', function($location, $scope, $http, auth){
+  .controller('userController', function($location, $scope, $http, auth, $state){
     $scope.user = auth.profile;
 
     $scope.backToGame = function() {
-      $location.path('/game');
+      $state.go('game');
     };
 
     $scope.createProfile = function(){
@@ -15,10 +15,10 @@ angular.module('app.user', [])
       //Send request to create new column in User database
       $http.post('/api/createUser', $scope.user)
         .then(function(res){
-          $location.path('/game');
+          $state.go('game');
         }, function(err){
           console.log('Error!', err);
-          $location.path('/landingPage');
+          $state.go('landingPage');
         });
     };
   });
