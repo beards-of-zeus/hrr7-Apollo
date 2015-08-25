@@ -82,43 +82,29 @@ form {
       font-size: 1.5em; }
 
 .noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 /*D3 default styling*/
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
-  shape-rendering: crispEdges;
-}
+  shape-rendering: crispEdges; }
 
 /*.x.axis path {
   display: none;
 }*/
-
-.x.axis text{
-  display: none;
-  shape-rendering: crispEdges;
-   }
-
-.x.axis path {
+.x.axis text {
   display: none; }
 
 .line {
   fill: none;
   stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-d3box {
-  font: 10px sans-serif;
-
   stroke-width: 1.5px; }
 
 d3box {
@@ -129,17 +115,6 @@ d3box {
 .d3box circle {
   fill: #fff;
   stroke: #000;
-  stroke-width: 1.5px;
-}
-
-.d3box .center {
-  stroke-dasharray: 3,3;
-}
-
-.d3box .outlier {
-  fill: none;
-  stroke: #ccc;
-
   stroke-width: 1.5px; }
 
 .d3box .center {
@@ -149,7 +124,7 @@ d3box {
   fill: none;
   stroke: #ccc; }
 
+#scores, #gender, #age {
+  display: inline-block; }
+
 /*# sourceMappingURL=style.css.map */
-#scores, #gender, #age{
-  display: inline-block;
-}
