@@ -27,6 +27,9 @@
       <span ng-if="showMessage">{{ submitMessage }}</span>
     </form>
     <input type="submit" ng-click="logout()" value="Log out" />
-    <input type="submit" ng-click="profile()" value="User Profile" />
+    <!-- Function needs to be rewritten so it doesn't overwrite scores -->
+    <!-- <input type="submit" ng-click="profile()" value="Update User Profile" /> -->
+    <input type="submit" ng-click="performance()" value="View Performance" />
+    
   </div>
 </div>

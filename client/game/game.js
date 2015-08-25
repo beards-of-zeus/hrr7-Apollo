@@ -52,6 +52,10 @@ angular.module('app.game', ['ui.router'])
       $state.go('user');
     };
 
+    $scope.performance = function(){
+      $state.go('performance');
+    };
+
     //////////
     // SET UP
     //////////
