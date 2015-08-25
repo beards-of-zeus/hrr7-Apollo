@@ -1,7 +1,7 @@
 angular.module('app.landingPage',[])
 
   .controller('landingPageController', ['$scope', '$http', 'auth', 'store', '$state', '$analytics',
-    function ($scope, $http, auth, store, $location, $analytics) {
+    function ($scope, $http, auth, store, $state, $analytics) {
       $scope.login = function () {
         auth.signin({}, 
           function (profile, token) {

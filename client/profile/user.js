@@ -4,7 +4,6 @@ angular.module('app.user', [])
 
     $scope.createProfile = function(){
       //Build profile object
-      console.log($scope.user.highScores);
       $scope.user.username = auth.profile.nickname;
       $scope.user.user_Id = auth.profile.user_id.split('|')[1];
       $scope.user.highScores = $scope.user.highScores || [];
