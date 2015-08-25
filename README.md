@@ -80,3 +80,14 @@ c.) go to https://console.developers.google.com/
     -Create
 d.) Copy/paste clientid and client secret into auth0 menu from b.)
 e.) save
+
+## User database instructions ##
+1) Install Postgres app http://postgresapp.com/, make sure that it is running 
+2) Run the psql command from your terminal to open the postgres shell (make sure that it runs on port 5432)
+3) Create the database Delphi run the following: ```create database delphi;```
+* Connect to the new db with:  ```\c delphi```
+4) Start the server with nodemon and you should see the tables being created during the run
+5)  Update your db.js file so that it reads  
+* Be sure that you have no other installations of psql, uninstalling them if needed
+* Add the information on the following page to your bash profile to use command line with Psql: http://postgresapp.com/documentation/cli-tools.html - be sure to restart your bash after this
+ * You can exit the psql terminal with the following command: ```\q```
