@@ -121,6 +121,6 @@ d3box {
   stroke: #ccc;
 }
 /*# sourceMappingURL=style.css.map */
-#line, #box{
+#scores, #gender, #age{
   display: inline-block;
 }

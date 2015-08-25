@@ -75,7 +75,8 @@ angular.module('app.performance', [])
           }
         });
     };
-    $scope.drawLine();
+    $scope.scoreHistory();
+
 
     $scope.compare = function(compField){
         var margin = {top: 10, right: 85, bottom: 20, left: 85},
@@ -157,5 +158,6 @@ angular.module('app.performance', [])
           };
         }
     };
-    $scope.drawBox();
+    $scope.compare('gender');
+    $scope.compare('age');
   });
