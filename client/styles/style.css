@@ -37,7 +37,7 @@ button {
 .right {
   float: right;
   margin-top: -5px;
-  margin-right: 1%;
+  margin-right: 80px;
   width: 65px; }
 
 form {
@@ -90,7 +90,6 @@ form {
     user-select: none;
 }
 
-
 /*D3 default styling*/
 .axis path,
 .axis line {
@@ -105,7 +104,11 @@ form {
 
 .x.axis text{
   display: none;
-}
+  shape-rendering: crispEdges;
+   }
+
+.x.axis path {
+  display: none; }
 
 .line {
   fill: none;
@@ -115,7 +118,11 @@ form {
 
 d3box {
   font: 10px sans-serif;
-}
+
+  stroke-width: 1.5px; }
+
+d3box {
+  font: 10px sans-serif; }
 
 .d3box line,
 .d3box rect,
@@ -132,7 +139,16 @@ d3box {
 .d3box .outlier {
   fill: none;
   stroke: #ccc;
-}
+
+  stroke-width: 1.5px; }
+
+.d3box .center {
+  stroke-dasharray: 3,3; }
+
+.d3box .outlier {
+  fill: none;
+  stroke: #ccc; }
+
 /*# sourceMappingURL=style.css.map */
 #scores, #gender, #age{
   display: inline-block;
