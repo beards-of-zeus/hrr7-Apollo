@@ -2,6 +2,7 @@ var app = window.app = angular.module('app', ['auth0','angular-storage','angular
 
 //Main controller for nav bar and header page
 .controller('mainController', function($state, store, auth) {
+  this.profile = auth;
   this.logout = function() {
       auth.signout();
       store.remove('profile');
@@ -37,7 +38,7 @@ var app = window.app = angular.module('app', ['auth0','angular-storage','angular
   // ...
 })
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
 //remove # from address bar on view changes
   $locationProvider.html5Mode(true);
 
