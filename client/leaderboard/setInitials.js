@@ -1,6 +1,6 @@
 angular.module('app.setInitials', [])
 
-.controller('setInitialsController', function(store, auth, $scope, $timeout, $interval, $http, scoreFactory, $state, sessionFactory, levelFactory, $analytics){
+.controller('setInitialsController', function($scope, $timeout, $interval, $http, scoreFactory, $state, sessionFactory, levelFactory, $analytics){
   // adds the total score to the scope so it can be viewed in the DOM
   $scope.totalScore = scoreFactory;
   $scope.totalLevel = levelFactory;
@@ -16,11 +16,4 @@ angular.module('app.setInitials', [])
       $state.transitionTo('leaderboard');
     });
   };
-
-  $scope.logout = function() {
-      auth.signout();
-      store.remove('profile');
-      store.remove('token');
-      $state.go('landingPage');
-    };
 });

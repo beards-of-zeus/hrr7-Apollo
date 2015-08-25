@@ -7,11 +7,14 @@ html {
   font-family: 'Press Start 2P', cursive; }
 
 .main-header {
+  background-color: rgba(40, 44, 44, 0.6);
   color: #F5FFFF;
   padding: 10px;
   border-bottom: 10px solid #141466;
   border-style: ridge;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  margin: 5px 2%;
+  width: 94%; }
 
 .box {
   border-color: red;
@@ -26,6 +29,16 @@ button {
   margin: 10px;
   border: 5px solid #141466;
   border-style: ridge; }
+
+.left {
+  display: inline-block;
+  margin-top: 2px; }
+
+.right {
+  float: right;
+  margin-top: -5px;
+  margin-right: 80px;
+  width: 65px; }
 
 form {
   margin: 0 auto;
@@ -69,58 +82,49 @@ form {
       font-size: 1.5em; }
 
 .noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 /*D3 default styling*/
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
-  shape-rendering: crispEdges;
-}
+  shape-rendering: crispEdges; }
 
 /*.x.axis path {
   display: none;
 }*/
-
-.x.axis text{
-  display: none;
-}
+.x.axis text {
+  display: none; }
 
 .line {
   fill: none;
   stroke: steelblue;
-  stroke-width: 1.5px;
-}
+  stroke-width: 1.5px; }
 
 d3box {
-  font: 10px sans-serif;
-}
+  font: 10px sans-serif; }
 
 .d3box line,
 .d3box rect,
 .d3box circle {
   fill: #fff;
   stroke: #000;
-  stroke-width: 1.5px;
-}
+  stroke-width: 1.5px; }
 
 .d3box .center {
-  stroke-dasharray: 3,3;
-}
+  stroke-dasharray: 3,3; }
 
 .d3box .outlier {
   fill: none;
-  stroke: #ccc;
-}
+  stroke: #ccc; }
+
+#scores, #gender, #age {
+  display: inline-block; }
+
 /*# sourceMappingURL=style.css.map */
-#scores, #gender, #age{
-  display: inline-block;
-}

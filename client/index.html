@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="app">
 <head>
   <meta charset="UTF-8">
@@ -16,21 +17,22 @@
 
   <!-- Analytics -->
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  (function(i,s,o,g,r,a,m){i.GoogleAnalyticsObject=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments);},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);})
+  (window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-66587916-2', 'auto');
   </script>
 </head>
-<body>
+<body ng-controller="mainController as main">
   <header class="main-header">
-    Homerow Apollo
+    <div class="left">Homerow Apollo</div>
+    <div ng-if="main.profile.isAuthenticated" class="right"><input type="button" ng-click="main.logout()" value="Log out" /></div>
   </header>
 
   <a href="http://hackreactor.com"> \
   <img style="position: fixed; top: 0; right: 0; border: 0;" \
-  src="http://i.imgur.com/x86kKmF.png" \
+  src="//i.imgur.com/x86kKmF.png" \
   alt="Built at Hack Reactor"> \
   </a>
   
