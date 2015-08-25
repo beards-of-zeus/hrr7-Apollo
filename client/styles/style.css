@@ -86,7 +86,11 @@ form {
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
+/*.x.axis path {
+  display: none;
+}*/
+
+.x.axis text{
   display: none;
 }
 
@@ -117,3 +121,6 @@ d3box {
   stroke: #ccc;
 }
 /*# sourceMappingURL=style.css.map */
+#scores, #gender, #age{
+  display: inline-block;
+}

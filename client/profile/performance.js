@@ -5,8 +5,8 @@ angular.module('app.performance', [])
     };
     $scope.scoreHistory = function(){
       var margin = {top: 20, right: 20, bottom: 30, left: 50},
-      width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
+      width = window.innerWidth*0.3 - margin.left - margin.right,
+      height = window.innerHeight*0.75 - margin.top - margin.bottom;
 
       var x = d3.scale.linear()
         .range([0, width]);
@@ -29,7 +29,7 @@ angular.module('app.performance', [])
       var svg = d3.select("#scores").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-      .append("g")
+        .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       $http.post('/api/getProfile', {id: auth.profile.user_id.split('|')[1]})
@@ -47,18 +47,36 @@ angular.module('app.performance', [])
                 .attr("transform", "translate(0," + height + ")")
                 .call(xAxis);
 
+            svg.append("text")
+                .attr("class", "x label")
+                .attr("text-anchor", "end")
+                .attr("x", width)
+                .attr("y", height - 6)
+                .text("Game");
+
             svg.append("g")
                 .attr("class", "y axis")
                 .call(yAxis);
+
+            svg.append("text")
+                .attr("class", "y label")
+                .attr("text-anchor", "end")
+                .attr("y", 6)
+                .attr("dy", ".75em")
+                .attr("transform", "rotate(-90)")
+                .text("High Score");
 
             svg.append("path")
                 .datum(data)
                 .attr("class", "line")
                 .attr("d", line);
+
           } else {
           }
         });
     };
+    $scope.scoreHistory();
+
 
     $scope.compare = function(compField){
         var margin = {top: 10, right: 85, bottom: 20, left: 85},
@@ -118,6 +136,14 @@ angular.module('app.performance', [])
                 .call(chart);
           });
 
+        // svg.append("text")
+        //         .attr("x", (width / 2))             
+        //         .attr("y", margin.top-10)
+        //         .attr("text-anchor", "middle")  
+        //         .style("font-size", "16px") 
+        //         .style("text-decoration", "underline")  
+        //         .text("Comparison Graph");
+
         // Returns a function to compute the interquartile range.
         function iqr(k) {
           return function(d, i) {
@@ -132,5 +158,6 @@ angular.module('app.performance', [])
           };
         }
     };
-
+    $scope.compare('gender');
+    $scope.compare('age');
   });

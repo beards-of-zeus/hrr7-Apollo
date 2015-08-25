@@ -24,4 +24,8 @@ angular.module('app.leaderboard', [])
       store.remove('token');
       $state.go('landingPage');
     };
+
+  $scope.performance = function(){
+      $state.go('performance');
+    };
 });
